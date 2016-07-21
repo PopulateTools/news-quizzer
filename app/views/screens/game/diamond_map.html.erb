@@ -1,0 +1,36 @@
+<div class="pure-g question">
+
+  <div class="pure-u-1 pure-u-md-1-2 text_container ">
+
+    <h1><%= current_screen.first_question.title %></h1>
+
+    <p>The diamond industry has seen its share of scandals, as well as numerous links to complex offshore financial structures.</p>
+
+    <p>Out of the remaining countries on the map, can you guess the top five diamond-producing nations where we also found diamond businesses that used offshore companies in the Panama Papers?</p>
+
+    <a href="" class="init_inter pure-button-primary">Go!</a>
+
+    <p data-after-go>Click on the map to guess <span data-pending data-total="<%= current_screen.first_question.right_options.length %>"><%= current_screen.first_question.right_options.length %></span> more diamond-producing countries:</p>
+
+    <a href="" class="give_hint_button pure-button-primary">Need a hint?</a>
+
+    <%= form_for current_screen.first_question.answers.new, url: answers_path(format: :json), data:{remote: true, answers: true}, html: {class: "pure-form pure-form-stacked"} do |f|%>
+      <%= f.hidden_field :took %>
+      <%= f.hidden_field :question_id %>
+      <%= f.submit "Check results...", class: "pure-button pure-button-primary" %>
+    <% end %>
+
+    <div class="updated_hint"  id="results" style="display:none"></div>
+    <div data-after-map style="display:none"><%= current_screen.first_question.hint %></div>
+
+    <%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form", style: "display:none", id: "next-screen"} do |f|%>
+      <%= f.submit "Let's keep digging...", class: "pure-button pure-button-primary" %>
+    <% end %>
+  </div>
+
+  <div class="pure-u-1 pure-u-md-1-2 map_container ">
+    <div id="map" class="diamond_map"></div>
+    <p id="counter"><span id="count">0</span> out of <span id="total" data-total="<%= current_screen.first_question.right_options.length %>"></span></p>
+  </div>
+
+</div>

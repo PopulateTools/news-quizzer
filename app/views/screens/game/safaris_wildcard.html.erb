@@ -1,0 +1,23 @@
+<div class="pure-g question">
+
+  <div class="pure-u-md-1-4"></div>
+
+  <div class="pure-u-1 pure-u-md-1-2 form_button_full">
+
+  	<div class="question_header">
+      <h1><%= current_screen.first_question.title %></h1>
+    </div>
+
+		<p>The Panama Papers show that it’s common to have business activity in one country, and <strong>offshore companies and bank accounts in other jurisdictions, especially tax havens</strong>.</p>
+
+    <p>For example, one of Africa’s most loved safari guides created an offshore company in 2011 to act as a booking agent for up to $250,000 in expected safari revenue. Can you guess in which countries:</p>
+
+    <p>safari tours were performed / an offshore company was set up / a bank account was held?<p>
+
+		<%= render partial: 'screens/single_choice_question', locals: {question: current_screen.first_question} %>
+
+  </div>
+
+  <div class="pure-u-md-1-4"></div>
+
+</div>

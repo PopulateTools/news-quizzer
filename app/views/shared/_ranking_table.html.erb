@@ -1,0 +1,47 @@
+<h3>Top players</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>User</th>
+      <th>Country</th>
+      <th>Points</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% top_players.each_with_index do |session, position| %>
+      <tr <%= "class='row-bold'".html_safe if session == current_session %>>
+        <td><%= position + 1 %></td>
+        <td><%= session.nickname %></td>
+        <td><%= session.country_object.name %></td>
+        <td><%= session.points %></td>
+        <td><%= duration_in_seconds session.seconds %></td>
+      </tr>
+    <% end %>
+    <% unless top_players.include?(current_session) %>
+      <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="row-bold">
+        <td><%= current_session_ranking_position %></td>
+        <td><%= current_session.nickname %></td>
+        <td><%= current_session.country_object.name %></td>
+        <td><% current_session.points %></td>
+        <td><%= duration_in_seconds current_session.seconds %></td>
+      </tr>
+      <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

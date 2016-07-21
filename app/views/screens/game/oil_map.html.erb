@@ -1,0 +1,37 @@
+<div class="pure-g question">
+  <div class="pure-u-1 pure-u-md-1-2 text_container ">
+
+    <h1><%= current_screen.first_question.title %></h1>
+
+    <p>Africa is one of the world’s foremost oil exporters. But the continent doesn’t always see the full benefit: more money is siphoned out of Africa from its oil industry than any other sector.</p>
+
+    <p>Out of Africa’s top ten oil-producing countries, can you guess in which ones we found companies that used offshore financial structures in the Panama Papers?</p>
+
+    <p>(We’ve kept the safari countries highlighted, so no need to click any of those)</p>
+
+    <a href="" class="init_inter pure-button-primary">Go!</a>
+
+    <p data-after-go>Click on the map to guess <span data-pending data-total="<%= current_screen.first_question.right_options.length %>"><%= current_screen.first_question.right_options.length %></span> more oil-producing countries.</p>
+
+    <a href="" class="give_hint_button pure-button-primary">Need a hint?</a>
+
+    <div class="updated_hint" id="results" style="display:none"></div>
+
+    <div data-after-map style="display:none"><%= current_screen.first_question.hint %></div>
+
+    <%= form_for current_screen.first_question.answers.new, url: answers_path(format: :json), data:{remote: true, answers: true}, html: {class: "pure-form pure-form-stacked"} do |f|%>
+      <%= f.hidden_field :took %>
+      <%= f.hidden_field :question_id %>
+      <%= f.submit "Those are your guesses? Let's check", class: "pure-button pure-button-primary" %>
+    <% end %>
+
+    <%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form", style: "display:none", id: "next-screen"} do |f|%>
+      <%= f.submit "More", class: "pure-button pure-button-primary" %>
+    <% end %>
+  </div>
+
+  <div class="pure-u-1 pure-u-md-1-2 map_container ">
+    <div id="map" class="oil_map"></div>
+    <p id="counter"><span id="count">0</span> out of <span id="total" data-total="<%= current_screen.first_question.right_options.length %>"></span></p>
+  </div>
+</div>

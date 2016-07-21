@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <% set_meta_tags twitter: {
+    card: 'summary',
+    site: '@ICIJorg'
+    } %>
+
+  <% set_meta_tags og: {
+    type: 'website',
+    url: request.original_url,
+    title: @page_title,
+    # image: image_url('offshoreleaks_db.png'),
+    description: (@page_description || Settings.site_description)
+    } %>
+
+  <%= display_meta_tags site: 'Continent of Secrets · ICIJ', reverse: true %>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script type="text/javascript">if(document.domain != "localhost") { document.domain = 'icij.org'; }</script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <%= render 'shared/analytics_header' if File.file?(Rails.root.join('app/views/shared/_analytics_header.html.erb')) %>
+
+
+</head>
+
+<body data-screen="<%= current_screen.try(:template) %>" <%= 'data-sandbox' if controller_name == 'sandbox' %>>
+
+  <div class="container">
+
+    <div class="logo"><%= image_tag 'Logo_trans@2x.png', width: '60' %></div>
+    <div class="logo_pulitzer"><%= image_tag 'logo_pulitzer_icon.png' %></div>
+
+    <div class="buttons">
+
+      <% if in_game? %>
+        <div class="link"><%= link_to '<i class="fa fa-question-circle"></i>'.html_safe, '', class: 'open_help' %></div>
+      <% end %>
+
+      <button href="#menu" class="open_menu menu-toggle" id="menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu</span>
+        <svg class="icon icon-menu-toggle" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
+          <g class="svg-menu-toggle">
+            <path class="line line-1" d="M5 13h90v14H5z"/>
+            <path class="line line-2" d="M5 43h90v14H5z"/>
+            <path class="line line-3" d="M5 73h90v14H5z"/>
+          </g>
+        </svg>
+      </button>
+
+    </div>
+
+    <header>
+
+      <h1>Continent of Secrets</h1>
+      <h2 class="responsive">How much do you know about offshore use in Africa?</h2>
+
+    </header>
+
+    <% if in_game? %>
+      <div class="progress mobile" value="<%= current_screen.position %>" max="<%= Screen.max_progress_value %>"><div class="progressed"></div></div>
+    <% end %>
+
+    <div class="content">
+
+      <% if in_game? %>
+        <div class="player_bar responsive"><%= render partial: 'shared/player_bar' %></div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div><%= flash[:alert] %></div>
+      <% end %>
+
+      <div id="screen">
+        <%= yield %>
+      </div>
+
+    </div>
+
+    <footer class="responsive">
+
+      <a href="#credits" class="open_menu menu-toggle">Credits</a>
+      · <%= link_to 'Restart game', session_path, method: :delete, data: {confirm: 'If you restart the game, you will lose all your actual points!' } %>
+
+    </footer>
+
+  </div>
+
+  <div class="slide_menu">
+
+    <%= render "shared/credits" %>
+
+  </div>
+
+  <div id="help_overlay">
+    <div class="help_progress_bar">
+      We’ll keep this short and sweet. You will see your progress here.
+      <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="380.1" height="380.1" viewBox="0 0 380.122 380.122"><path d="M379.6 148.3c-.6-7.4-10.4-9.2-13.4-3.7-9.8-6-22.7-10.4-32-15.3-15.2-8-31.7-16.5-48.8-21.4-3.7-5.6-14-3.8-13.5 4.2 1.8 91.8-115.7 90-181.2 79 0-7.4.6-14.8.6-21.5v-9.2c0-1.8-3-7.3-3-5 0-.5-.7-1-.7-1.7-6.7-19-79.6 29.4-87 41.6-1 2.4-1 6 1.3 8.6 1.3.6 2.5 1.8 3 3-.5 1.2-.5 2.5-.5 3 .6 8 9.8 15.4 14.7 20.3 14.7 15.3 30.6 31.2 47.7 44 2.3 2 7.2 1.3 9-1.2.7-.5.7-1 1.3-1 .6-.7.6-2 .6-3.2.5-.6 1-1.8 1.8-3 .6-7.4.6-16.6 3-23.3 0-.6.6-1.2.6-1.8C171.6 283 392 283 379.6 148.3zm-298 78.3H79c-9.7 0-8.4 19-7.2 30-9.8-8-19-17-28.2-25.7-6.7-6.2-12.8-12.3-19-19-1.8-2.5-4.2-4.4-6-6.8-1.3-1.2-2.5-2.5-3.7-3-1.3-.7-2-.7-2-.7l-.6-.6c5-3.8 12.3-10 13.5-10.5 9-6 18.3-11 28-16 3.7-1.8 16-5.4 25-10.3v1.8c-1 8-2.3 16-2.3 24.5 0 5.5 4.3 7.3 8 7.3C153 227.2 282.8 211.3 287 120c13.5 6.8 26.3 13.6 39.8 21 9.8 5.4 26.3 17.7 39.2 19-7.4 119.2-210 89.3-284.6 66.6z"/></svg>
+    </div>
+    <div class="help_points">
+      You’ll earn points with your right answers and your answering speed.
+      <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="380.1" height="380.1" viewBox="0 0 380.122 380.122"><path d="M379.6 148.3c-.6-7.4-10.4-9.2-13.4-3.7-9.8-6-22.7-10.4-32-15.3-15.2-8-31.7-16.5-48.8-21.4-3.7-5.6-14-3.8-13.5 4.2 1.8 91.8-115.7 90-181.2 79 0-7.4.6-14.8.6-21.5v-9.2c0-1.8-3-7.3-3-5 0-.5-.7-1-.7-1.7-6.7-19-79.6 29.4-87 41.6-1 2.4-1 6 1.3 8.6 1.3.6 2.5 1.8 3 3-.5 1.2-.5 2.5-.5 3 .6 8 9.8 15.4 14.7 20.3 14.7 15.3 30.6 31.2 47.7 44 2.3 2 7.2 1.3 9-1.2.7-.5.7-1 1.3-1 .6-.7.6-2 .6-3.2.5-.6 1-1.8 1.8-3 .6-7.4.6-16.6 3-23.3 0-.6.6-1.2.6-1.8C171.6 283 392 283 379.6 148.3zm-298 78.3H79c-9.7 0-8.4 19-7.2 30-9.8-8-19-17-28.2-25.7-6.7-6.2-12.8-12.3-19-19-1.8-2.5-4.2-4.4-6-6.8-1.3-1.2-2.5-2.5-3.7-3-1.3-.7-2-.7-2-.7l-.6-.6c5-3.8 12.3-10 13.5-10.5 9-6 18.3-11 28-16 3.7-1.8 16-5.4 25-10.3v1.8c-1 8-2.3 16-2.3 24.5 0 5.5 4.3 7.3 8 7.3C153 227.2 282.8 211.3 287 120c13.5 6.8 26.3 13.6 39.8 21 9.8 5.4 26.3 17.7 39.2 19-7.4 119.2-210 89.3-284.6 66.6z"/></svg>
+    </div>
+    <div class="help_ranking">
+      We keep a ranking. You'll be able to check your position at the end, and check what % of people got things right.
+      <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="380.1" height="380.1" viewBox="0 0 380.122 380.122"><path d="M379.6 148.3c-.6-7.4-10.4-9.2-13.4-3.7-9.8-6-22.7-10.4-32-15.3-15.2-8-31.7-16.5-48.8-21.4-3.7-5.6-14-3.8-13.5 4.2 1.8 91.8-115.7 90-181.2 79 0-7.4.6-14.8.6-21.5v-9.2c0-1.8-3-7.3-3-5 0-.5-.7-1-.7-1.7-6.7-19-79.6 29.4-87 41.6-1 2.4-1 6 1.3 8.6 1.3.6 2.5 1.8 3 3-.5 1.2-.5 2.5-.5 3 .6 8 9.8 15.4 14.7 20.3 14.7 15.3 30.6 31.2 47.7 44 2.3 2 7.2 1.3 9-1.2.7-.5.7-1 1.3-1 .6-.7.6-2 .6-3.2.5-.6 1-1.8 1.8-3 .6-7.4.6-16.6 3-23.3 0-.6.6-1.2.6-1.8C171.6 283 392 283 379.6 148.3zm-298 78.3H79c-9.7 0-8.4 19-7.2 30-9.8-8-19-17-28.2-25.7-6.7-6.2-12.8-12.3-19-19-1.8-2.5-4.2-4.4-6-6.8-1.3-1.2-2.5-2.5-3.7-3-1.3-.7-2-.7-2-.7l-.6-.6c5-3.8 12.3-10 13.5-10.5 9-6 18.3-11 28-16 3.7-1.8 16-5.4 25-10.3v1.8c-1 8-2.3 16-2.3 24.5 0 5.5 4.3 7.3 8 7.3C153 227.2 282.8 211.3 287 120c13.5 6.8 26.3 13.6 39.8 21 9.8 5.4 26.3 17.7 39.2 19-7.4 119.2-210 89.3-284.6 66.6z"/></svg>
+    </div>
+    <div class="help_some_tips">Some tips before we start</div>
+    <div class="help_continue">
+      <%= link_to "Let's get started", '', class: "pure-button pure-button-primary close_help" %>
+    </div>
+  </div>
+
+  <%= render 'shared/analytics_footer' if File.file?(Rails.root.join('app/views/shared/analytics_footer.html.erb')) %>
+
+</body>
+</html>

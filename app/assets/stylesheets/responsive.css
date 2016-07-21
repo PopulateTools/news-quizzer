@@ -1,0 +1,176 @@
+@include screen(1024) {
+  
+}
+
+@include screen(768) {
+
+  .logo {
+    display: none;
+  }
+  body[data-screen='start'] {
+    .content {
+      padding: 6em 1em 0 1em;
+      h1 {
+        font-size: 2em;
+      }
+    }
+    .progress.mobile {
+      display: none;
+    }
+    .logo, .logo_pulitzer {
+      display: block;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+    }
+    .logo_pulitzer {
+      left: 4.5em;
+    }
+    .intro_modal {
+      width: 100%;
+    }
+
+  }
+
+  #help_overlay {
+    font-size: 1.2em;
+    .help_progress_bar {
+      top: 50px;
+      left: 2.5%;
+      width: 95%;
+      svg.arrow {
+        position: absolute;
+        top: -350%;
+        left: 20%;
+        opacity: .3;
+        transform: rotate(60deg) scaleY(-1);
+      }
+    }
+    .help_points {
+      top: 50%;
+      left: 2.5%;
+      width: 95%;
+      svg.arrow {
+        display: none;
+      }
+    }
+    .help_ranking {
+      top: 25%;
+      right: 2.5%;
+      width: 95%;
+      svg.arrow {
+        display: none;
+      }
+    }
+    .help_some_tips {
+      display: none;
+      bottom: 25%;
+      left: 5%;
+      font-size: 1.2em;
+      text-align: center;
+
+    }
+    .help_continue {
+      z-index: 1001;
+      bottom: 10%;
+      right: 2.5%;
+      width: 95%;
+      a.pure-button-primary {
+        margin: 0;
+        font-family: "Roboto";
+      }
+    }
+  }
+  
+  .intro_modal .mfp-inline-holder .mfp-content {
+    position: initial;
+    width: 90%;
+
+    .pure-form-stacked label, 
+    .pure-form-stacked input, 
+    .pure-form-stacked select {
+      width: 100%;
+    }
+  }
+
+  .content {
+    padding: 2em 1em 3em 1em;
+    bottom: 0;
+    h1 {
+      margin-top: 0;
+      font-size: 1.8em;
+    }
+    label {
+      width: 100%;
+    }
+    .question_header {
+      h1 {
+        font-size: 1.4em;
+      }
+      h2 {
+        font-size: 1.2em;
+      }
+    }
+    div[data-hint] {
+      font-size: 1.2em;
+    }
+  }
+
+  .progress {
+    position: absolute;
+    top: $layout_mobile_header_height;
+    width: 100%;
+    height: 4px;
+    border: none;
+    @include border-radius(0);
+    margin: 0;
+    left: 0;
+    z-index: 100;
+    .progressed {
+      @include border-radius(0);
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  .pure-form label.pure-radio {
+    width: 100%;
+    float: none;
+    margin: 0 0 4% 0;
+  }
+
+  .slider_container {
+    width: initial;
+    h1 {
+      font-size: 1.4em;
+    }
+  }
+
+  .fill_in_the_blanks_cont {
+    margin: 0 -2em;
+    line-height: 1.6em;
+    p {
+      font-size: 1em;
+    }
+  }
+  .word-gap {
+    height: 24px;
+    width: 135px;
+  }
+  
+  .slide_menu {
+    padding: 1em;
+  }
+}
+
+.responsive {
+  @include screen(768) {
+    display: none;
+  } 
+}
+.mobile {
+  @include min-screen(768) {
+    display: none;
+  } 
+}

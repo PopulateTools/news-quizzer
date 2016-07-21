@@ -1,0 +1,48 @@
+---
+start:
+  id: 1
+  slug: start
+  position: 0
+  template: start
+
+how_many_countries:
+  id: 2
+  slug: how-many-countries
+  position: 1
+  template: how_many_countries
+  
+how_many_people:
+  id: 3
+  slug: how-many-people
+  position: 2
+  template: how_many_people
+
+average_monthly_income:
+  id: 4
+  slug: average-monthly-income
+  position: 3
+  template: average_monthly_income
+
+results_part_1:
+  id: 5
+  slug: results-part-1
+  position: 4
+  template: results_part_1
+
+offshore_companies_nigeria:
+  id: 6
+  slug: offshore-companies-nigeria
+  position: 5
+  template: offshore_companies_nigeria
+
+how_much_know_about_offshore:
+  id: 7
+  slug: how-much-do-you-know-about-offshore-use-in-africa
+  position: 6
+  template: how_much_know_about_offshore
+
+results:
+  id: 8
+  slug: results
+  position: 7
+  template: results

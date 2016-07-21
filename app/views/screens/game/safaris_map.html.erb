@@ -1,0 +1,40 @@
+<div class="pure-g question">
+  <div class="pure-u-1 pure-u-md-1-2 text_container ">
+
+    <h1><%= current_screen.first_question.title %></h1>
+
+    <p>Visitors to Africa’s <strong>south</strong> and <strong>east</strong> often hope to catch a glimpse of hippos in <strong>Tanzania</strong> or lions in <strong>South Africa</strong>. But sometimes their tourist dollars go to businesses that use offshore structures.</p>
+
+    <p><strong>Can you guess some of the countries where we found safari businesses that used offshore companies in the Panama Papers?</strong></p>
+
+    <a href="" class="init_inter pure-button-primary">Go!</a>
+
+    <p data-after-go>Click on the map to guess <span data-pending data-total="<%= current_screen.first_question.right_options.length %>"><%= current_screen.first_question.right_options.length %></span> more safari countries.</p>
+
+    <a href="" class="give_hint_button pure-button-primary">Need a hint?</a>
+
+
+    <%= form_for current_screen.first_question.answers.new, url: answers_path(format: :json), data:{remote: true, answers: true}, html: {class: "pure-form pure-form-stacked"} do |f|%>
+      <%= f.hidden_field :took %>
+      <%= f.hidden_field :question_id %>
+      <%= f.submit "Those are your guesses? Let's check", class: "pure-button pure-button-primary" %>
+    <% end %>
+
+    <div class="updated_hint" id="results" style="display:none"></div>
+
+    <div data-after-map style="display:none"><p><%= current_screen.first_question.hint %></p></div>
+
+    <%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form", style: "display:none", id: "next-screen"} do |f|%>
+      <%= f.submit "Next question", class: "pure-button pure-button-primary" %>
+    <% end %>
+  </div>
+
+  <div class="pure-u-1 pure-u-md-1-2 map_container ">
+
+    <div id="map" class="safari_map"></div>
+
+    <p id="counter"><span id="count">0</span> out of <span id="total" data-total="<%= current_screen.first_question.right_options.length %>"></span></p>
+
+  </div>
+
+</div>

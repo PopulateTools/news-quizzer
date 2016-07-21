@@ -1,0 +1,57 @@
+<div class="pure-g question">
+
+	<div class="pure-u-1 pure-u-md-11-24 ">
+
+	  <h1>Great work! You made it to the end</h1>
+		<small>You now join <%= total_ranking_elements %> other players that have completed the challenge.</small>
+
+		<div class="pure-g results_block_points">
+
+			<div class="pure-u-1 pure-u-md-1-2">
+				<small>Your final score:</small>
+				<div class="big_num"><%= current_session_points %></div>
+			</div>
+
+			<div class="pure-u-1 pure-u-md-1-2">
+				<small>Your ranking on our leaderboard:</small>
+				<div class="big_num">#<%= current_session_ranking_position %></div>
+			</div>
+
+      <div class="pure-u-1 pure-u-md-1 ranking">
+        <%= render 'shared/ranking_table' %>
+      </div>
+		</div>
+
+		<%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form"} do |f|%>
+	    <%= f.submit "See how your score compares", class: "pure-button pure-button-primary inline" %>
+	  <% end %>
+
+	</div>
+
+	<div class="pure-u-1 pure-u-md-2-24"></div>
+
+	<div class="pure-u-1 pure-u-md-11-24">
+
+		<div class="block center clearfix">
+
+			<h2>Share your results, challenge your friends</h2>
+
+			<%= render 'shared/share' %>
+
+	  </div>
+
+    <div class="block center">
+
+    	<p>Want to know more about Africa, the Panama Papers and ICIJ’s work? Sign up for updates:</p>
+      <%= form_tag list_subscriptions_path(format: :json), method: :post, remote: true, class: 'pure-form' do %>
+    		<input type="text" placeholder="your email" name="email" />
+    		<input type="submit" value="Subscribe" class="pure-button pure-button-primary inline"/>
+    		<div><small>(no spam, unsubscribe at any time · <%= link_to 'Privacy Policy', 'https://www.icij.org/privacy', target: 'new' %>)</small></div>
+      <% end %>
+
+      <div id="warning_flash"></div>
+    </div>
+
+	</div>
+
+</div>

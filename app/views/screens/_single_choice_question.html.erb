@@ -1,0 +1,20 @@
+<%= form_for question.answers.new, url: answers_path(format: :json), data: {remote: true, question: "single-choice"}, html: {class: "answers pure-form pure-form-stacked"} do |f|%>
+  <div class="clearfix">
+  <% question.options.each do |option| %>
+    <%= f.label "options_#{option.to_s.parameterize.underscore}", class: 'pure-radio' do %>
+      <%= f.radio_button :options, option, id: "answer_options_#{option.to_s.parameterize.underscore}" %>
+      <%= option %>
+    <% end %>
+  <% end %>
+  </div>
+
+  <%= f.hidden_field :took %>
+  <%= f.hidden_field :question_id %>
+<% end %>
+
+<div data-hint></div>
+
+<%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form", style: "display:none", id: 'next-screen'} do |f|%>
+  <%= f.submit 'Next...', class: "pure-button pure-button-primary" %>
+<% end %>
+

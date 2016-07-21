@@ -1,0 +1,195 @@
+.slider_container {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  padding-bottom: 10em;
+  div.question, div.slider {
+    display:inline-block;
+  }
+  .question {
+    vertical-align: middle;
+    font-size: 1.3em;
+    font-family: "PT Serif";
+    font-weight: bold;
+    margin: 1em 0 .5em;
+    padding: 0;
+  }
+  .slider {
+    // width:80%;
+    width: 100%;
+    height: 100px;
+  }
+  .hint {
+    font-size: 1em;
+    shape-rendering: crispEdges;
+    margin: 0 0 1em 0;
+  }
+  .slider_question {
+    opacity: .2;
+  }
+}
+
+.axis path {
+  fill: none;
+  stroke: #FFF;
+  opacity: .3;
+  shape-rendering: crispEdges;
+  stroke-width: 3px;
+}
+
+.axis line {
+  fill: none;
+  stroke: #FFF;
+  opacity: .6;
+  shape-rendering: crispEdges;
+  stroke-width: 2px;
+}
+
+.axis text {
+  font-size: 12px;
+  fill: #FFF;
+  opacity: .6;
+  shape-rendering: crispEdges;
+}
+
+.slider_question text.label, text.value {
+  text-anchor: middle;
+  fill: #FFF;
+  font-size: .8em;
+  font-family: "Roboto";
+}
+
+text.value {
+  font-weight: bold;
+}
+
+circle.guess {
+  fill: #4A1516;
+}
+
+circle.average {
+  fill: #FDBF5A;
+}
+
+circle.reality {
+  fill: #FEEDC0;
+}
+
+circle.wish {
+  fill: #f00;
+}
+
+/*
+#4A1516 - map, with 12% opacity
+#FEEDC0 - blanquito
+#FDBF5A - amarillo
+#4A1516 - marron
+#AE2724 - green right  $color_right
+#6EB644 - red wrong    $color_wrong 
+*/
+// MAP Country
+.subunit {
+  stroke: rgba(#FFF, .2);
+  stroke-linejoin: round;
+  // fill: #CE5A39; /* original soft red */
+  fill: #C9402A;
+  transition: fill .3s ease;
+}
+.subunit:hover {
+  fill: rgba(#000, .5);
+  cursor: pointer;
+  opacity: 1;
+}
+// Duplicated classes
+.safari_map .subunit.selected, 
+.subunit.selected_safaris {
+  fill: #E3A517;
+  opacity: 1;
+}
+
+.safari_map .give_hint {
+  fill: #E3A517;
+  @include transition(1.5s);
+}
+
+.oil_map .subunit.selected,
+.subunit.selected_oil {
+  fill: #3D2D07;
+  opacity: 1;
+}
+
+.oil_map .give_hint {
+  fill: #3D2D07;
+  @include transition(1.5s);
+}
+
+.diamond_map .subunit.selected,
+.subunit.selected_diamonds {
+  fill: $color_text_brown;
+  opacity: 1;
+}
+
+.diamond_map .give_hint {
+  fill: $color_text_brown;
+  @include transition(1.5s);
+}
+
+.subunit.selected.failed {
+  fill: $color_wrong;
+  opacity: 1;
+  @include transition(1s);
+}
+
+.subunit.not_selected {
+  fill: #FEEDC0;
+  opacity: 1;
+  @include transition(1s);
+}
+
+
+// MAP Tooltip
+div.tooltip {
+  position: absolute;
+  text-align: left;
+  display: inline;
+  padding: 1em 1.2em;
+  background-color: $color_text_brown;
+  color: #fff;
+  font-family: "Roboto";
+  font-size: 1em;
+  border: 0px;
+  border-radius: 2px;
+  pointer-events: none;
+  @include border-radius(3px);
+  
+}
+.map_container {
+  position: relative;
+  .give_hint_button {
+    font-size: .85em;
+    /*position: absolute;
+    bottom: 0;
+    right: 0;*/
+    background: $color_button_bg;
+    padding: .5em 1em;
+    display: inline-block;
+    @include border-radius(2px);
+    @include box-shadow();
+    text-decoration: none;
+    font-weight: bold;
+    color: $color_text_brown;
+    @include transition;
+  }
+  .give_hint_button:hover {
+    background: darken($color_button_bg, 10%);
+  }
+}
+g.legend {
+  fill: #631D1E;
+  font-size: 13px;
+  font-family: "Roboto";
+  
+  circle.swatch {
+    r: 8px;
+  }
+}

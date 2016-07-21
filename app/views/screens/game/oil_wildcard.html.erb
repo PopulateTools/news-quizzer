@@ -1,0 +1,46 @@
+<div class="pure-g question">
+
+  <div class="pure-u-1 pure-u-md-16-24">
+
+    <h1><%= current_screen.first_question.title %></h1>
+
+    <p>In high-value industries, an offshore company can help a business avoid or evade hundreds of millions of dollars in taxes. <strong>One company in the Panama Papers allegedly evaded $100 million in taxes</strong> on the sale of oil blocks in Gabon, and has been taken to court to pay it back.</p>
+
+    <p>Fill in the blanks in this taxman’s letter from the Panama Papers to discover how the company allegedly used its offshore structure.</p>
+
+    <div id="words" class="fill_in_the_blanks_cont">
+      <p>
+        The fraud consists of the use of <span data-droppable data-position="0" class="word-gap"></span> established in <span data-droppable data-position="1" class="word-gap"></span>,
+        without any true substance and whose <span data-droppable data-position="2" class="word-gap"></span> was to hold assets in Gabon and with the
+        intention to sell them, with the primary goal of <span data-droppable data-position="3" class="word-gap"></span> to Gabonese <span data-droppable data-position="4" class="word-gap"></span>
+        on the profits resulting from the sale.
+      </p>
+      <ul class="available_words">
+        <% current_screen.first_question.options.each do |option| %>
+          <li class="draggable"><%= option %></li>
+        <% end %>
+      </ul>
+      <a href="#" class="restart" data-restart><i class="fa fa-refresh"></i> Restart</a>
+    </div>
+
+
+    <%= form_for current_screen.first_question.answers.new, url: answers_path(format: :json), data:{remote: true, answers: true, total: current_screen.first_question.right_options.length}, html: {class: "pure-form pure-form-stacked"} do |f|%>
+      <%= f.hidden_field :took %>
+      <%= f.hidden_field :question_id %>
+      <%= f.submit "Sure? Let's check results", class: "pure-button pure-button-primary" %>
+    <% end %>
+
+    <div class="updated_hint" id="results" style="display:none"></div>
+
+    <%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form", style: "display:none", id: "next-screen"} do |f|%>
+      <%= f.submit "Continue", class: "pure-button pure-button-primary" %>
+    <% end %>
+  </div>
+
+  <div class="pure-u-1 pure-u-md-8-24 pos_relative">
+
+    <%= image_tag 'doc_fillin.jpg', class: 'img_fillin' %>
+
+  </div>
+
+</div>

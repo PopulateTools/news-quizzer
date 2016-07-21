@@ -1,0 +1,13 @@
+<% if current_session? %>
+	<div class="progress_cont">
+		Your Progress
+    <div class="progress" value="<%= current_screen.position %>" max="<%= Screen.max_progress_value %>"><div class="progressed"></div></div>
+	</div>
+  <div class="points">
+  	Points <span id="points"><%= current_session_points %></span>/<%= Session.max_points %>
+  	<div class="callout_points"></div>
+  </div>
+  <div class="ranking">Ranking <span id="ranking-position"><%= current_session_ranking_position %></span>/<%= total_ranking_elements %></div>
+<% end %>
+
+

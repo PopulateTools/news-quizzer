@@ -1,0 +1,32 @@
+<div class="pure-g question">
+
+  <div class="pure-u-1 pure-u-md-1-2">
+    <h1>Africa’s offshore empires</h1>
+
+    <p>It’s not just safari, oil and diamond companies... Click the map to discover some of the unexpected businesses that used offshore companies found in the Panama Papers, from crocodile skin manufacturers in Mozambique to flower exporters in Sudan.</p>
+
+    <p>Why does it matter? <strong>In the words of former South African president Thabo Mbeki</strong>, the money that is siphoned out through offshore companies and tax havens is money that is essential to Africa’s development:</p>
+
+    <blockquote>
+      These funds, which are more than the annual amounts the continent receives in donor aid, would help us further to push back the frontiers of underdevelopment and poverty.
+    </blockquote>
+
+    <%= form_tag '/start', class: "pure-form", id: "next-screen" do %>
+      <%= submit_tag "Start playing!", class: "pure-button pure-button-primary inline" %>
+      <div class="share_inline">
+        <span>Share this map with your friends</span>
+        <%= render partial: 'shared/share', locals: { text: 'Discover some unexpected African businesses that have used offshore companies'} %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="pure-u-1 pure-u-md-1-2">
+    <div id="map"></div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+    App['final_africa_map']();
+</script>

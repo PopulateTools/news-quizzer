@@ -1,0 +1,37 @@
+<div class="slider_container question">
+  <h1>Rich in resources</h1>
+
+  <p>Africa’s natural resources are world-renowned: from its unique wildlife and landscapes that attract millions of visitors, to its vast oil and mineral reserves. Drag the circles to guess:</p>
+
+  <% current_screen.cached_questions.each do |question| %>
+    <div id="question_<%= question.position %>" data-slider data-question="<%= question.position %>" class="slider_question">
+      <div class="question "></div>
+      <div class="hint "><%= question.hint if question.hint.present? %></div>
+      <div class="slider "></div>
+
+      <%= form_for question.answers.new, url: answers_path(format: :json), data: {remote: true, answer: true}, html: {class: "pure-form pure-form-stacked",id: "answer-question-#{question.id}" } do |f|%>
+        <%= f.hidden_field :question_id %>
+        <%= f.hidden_field :took %>
+        <%= f.hidden_field :options, value: nil %>
+      <% end %>
+
+      <% if question != current_screen.cached_questions.last %>
+        <%= link_to 'Next...', '#', data: {next_question: question.position + 1}, style: "display:none" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <input type="submit" value="OK, let's see the results" style="display:none" id="check-results" class="pure-button pure-button-primary" />
+
+  <%= form_for current_session, url: session_path, remote: true, html: {class: "pure-form", style: "display:none", id: "next-screen"} do |f|%>
+    <%= f.submit "Let's keep digging...", class: "pure-button pure-button-primary" %>
+  <% end %>
+
+  <script type="text/javascript">
+    window.questionsData = {};
+    <% current_screen.cached_questions.each do |question| %>
+      window.questionsData['question_<%= question.position %>'] = <%= question.to_json.html_safe %>;
+    <% end %>
+  </script>
+
+</div>

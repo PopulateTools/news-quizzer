@@ -1,0 +1,67 @@
+function replacePage(){
+
+  $('#screen').html('<%=j render(template: current_screen.template_path, layout: false) %>').show().velocity("transition.slideRightIn");
+
+  <% if current_screen.position < 2 %>
+    $('.player_bar').html('<%=j render(partial: 'shared/player_bar') %>');
+  <% end %>
+
+  update_progress(<%= current_screen.position %>);
+
+  // trigger custom event
+  var e = jQuery.Event("pageLoaded");
+  jQuery(document).trigger(e);
+
+  // gaCall is defined in app/views/shared/_analytics_header.html.erb
+  // Enable this template to define the function gaCall
+  if(_.isFunction('gaCall')){
+    gaCall('set', {
+      page: '<%= current_screen.slug %>',
+      title: '<%= current_screen.template %>'
+    });
+    gaCall('send', 'pageview');
+  }
+}
+
+// Update body data-screen attribute
+$('body')
+  .attr('data-screen', '<%= current_screen.template %>')
+  .data('screen', '<%= current_screen.template %>');
+
+// Slides animations
+var sequenceStart = [];
+
+// if($('.content #screen .question_header').length)
+//   sequenceStart.push({ e: $('.content #screen .question_header'), p: { opacity: 0 }, o: { sequenceQueue: false } });
+var replace_delay = 0;
+var duration = 300;
+if($('#map').is(':visible')) {
+  replace_delay = 1300;
+
+  if($('.content #screen .question .text_container').length)
+    sequenceStart.push({ e: $('.content #screen .question .text_container'), p: { opacity: 0 }, o: { duration: duration }});
+
+  if($('.legendCells').length)
+    sequenceStart.push({ e: $('.legendCells'), p: { opacity: 0 }, o: { sequenceQueue: false, duration: duration }});
+
+  if($('.selected.failed').length)
+    sequenceStart.push({ e: $('.selected.failed'), p: { fill: '#C9402A' }, o: { duration: duration } });
+
+  if($('#map').is('.safari_map') && $('.not_selected.subunit').length)
+    sequenceStart.push({ e: $('.not_selected.subunit'), p: { fill: '#E3A517' }, o: { sequenceQueue: false, duration: duration } });
+
+  if($('#map').is('.oil_map') && $('.not_selected.subunit').length)
+    sequenceStart.push({ e: $('.not_selected.subunit'), p: { fill: '#3D2D07' }, o: { sequenceQueue: false, duration: duration } });
+
+  if($('#map').is('.diamond_map') && $('.not_selected.subunit').length)
+    sequenceStart.push({ e: $('.not_selected.subunit'), p: { fill: '#631D1E' }, o: { sequenceQueue: false, duration: duration } });
+}
+
+if($('.content #screen .question').length)
+  sequenceStart.push({ e: $('.content #screen .question'), p: { opacity: 0 }, o: { delay: replace_delay, duration: duration, complete: function(){ replacePage(); }}});
+
+<% if flash[:alert].present? %>
+  $('#warning_flash').html('<%= flash[:alert] %>').velocity("callout.bounce");
+<% else %>
+  $.Velocity.RunSequence(sequenceStart);
+<% end %>

@@ -1,0 +1,7 @@
+<h1>Sandbox</h1>
+
+<ul>
+  <% @screens.each do |screen| %>
+    <li><%= link_to screen.slug, sandbox_screen_path(screen) %></li>
+  <% end %>
+</ul>

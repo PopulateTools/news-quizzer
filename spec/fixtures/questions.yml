@@ -1,0 +1,76 @@
+---
+how_many_countries_question:
+  type: SingleChoiceQuestion
+  position: 1
+  right_options: "--- !ruby/object:Set\nhash:\n  '54': true\n"
+  points: 100
+  options:
+    - '32'
+    - '43'
+    - '54'
+    - '59'
+  screen_id: 2
+
+how_many_people_question:
+  type: SingleChoiceQuestion
+  position: 1
+  right_options: "--- !ruby/object:Set\nhash:\n  '1000M': true\n"
+  points: 100
+  options:
+    - '100M'
+    - '900M'
+    - '1000M'
+    - '+1500M'
+  screen_id: 3
+
+average_monthly_income_question:
+  type: SingleChoiceQuestion
+  position: 1
+  right_options: "--- !ruby/object:Set\nhash:\n  '$22': true\n"
+  points: 150
+  options:
+    - '$123'
+    - '$22'
+    - '$478'
+  screen_id: 4
+
+offshore_companies_nigeria_question:
+  type: MultipleChoiceQuestion
+  position: 1
+  right_options: "--- !ruby/object:Set\nhash:\n  Bahamas: true\n  Dubai: true\n  Samoa: true\n"
+  points: 300
+  options:
+    - 'Bahamas'
+    - 'Bermuda'
+    - 'Cook Islands'
+    - 'Malta'
+    - 'Panama'
+    - 'Belize'
+    - 'British Anguilla'
+    - 'Dubai'
+    - 'Samoa'
+    - 'Jersey'
+  screen_id: 6
+
+how_much_know_about_offshore_1_question:
+  type: Slider
+  position: 1
+  right_options: "--- !ruby/object:Set\nhash:\n  '750000': true\n"
+  points: 180
+  screen_id: 7
+  options:
+    - 0
+    - 300_000
+  title: 'How much income does tourism produces in Africa?'
+
+how_much_know_about_offshore_2_question:
+  type: Slider
+  position: 2
+  right_options: "--- !ruby/object:Set\nhash:\n  '2900000': true\n"
+  points: 180
+  screen_id: 7
+  options:
+    - 0
+    - 15_000_000_000
+  title: 'How much income does oil produces in Africa?'
+

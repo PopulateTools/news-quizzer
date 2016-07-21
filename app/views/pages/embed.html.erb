@@ -1,0 +1,39 @@
+<head>
+<title>Embed ICIJ Africa Game</title>
+<style type="text/css">
+body {
+	background: #DFDFDF;
+}
+</style>
+</head>
+<body>
+
+<p>Javascript code</p>
+<pre><code>
+<%= %Q{<script type="text/javascript" src="//#{request.host_with_port}/embed.js" data-africa-embed></script>} %>
+</code></pre>
+<script type="text/javascript" src="//<%= request.host_with_port %>/embed.js" data-africa-embed></script>
+
+<div style="
+	max-width: 1100px;
+	margin: 2em auto;
+	outline: 1px solid #999;
+
+">
+  <iframe src="//<%= request.host_with_port %>" scrolling="no" style="border: 0; padding: 0; margin: 0;  width: 100%; height: 800px;"></iframe>
+
+</div>
+
+<div style="
+	max-width: 900px;
+	margin: 2em auto;
+	outline: 1px solid #999;
+
+">
+  <iframe src="//<%= request.host_with_port %>" scrolling="no" style="border: 0; padding: 0; margin: 0;  width: 100%; height: 800px;"></iframe>
+
+</div>
+
+
+</body>
+</html>

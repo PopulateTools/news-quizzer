@@ -1,0 +1,63 @@
+<div class="pure-g question">
+
+	<div class="pure-u-1 pure-u-md-1-4"></div>
+
+	<div class="pure-u-1 pure-u-md-2-4">
+
+		<h1>Continent of Secrets</h1>
+		<h2>Uncovering Africa’s offshore empires</h2>
+
+    <div class="intro_text">
+		
+      <p>More than $50 billion of foreign aid money is pumped into Africa annually. But did you know that roughly the same amount of money is illicitly siphoned out of the continent?</p>
+
+  		<p>Offshore companies play a major role in the $50 billion sucked out of Africa each year. This game will test your general knowledge of Africa, and challenge you to uncover secrets hidden inside the Panama Papers.</p>
+
+    </div>
+
+    <p><%= link_to "Let's play", '', class: 'pure-button pure-button-primary start' %>
+
+		<div class="intro_modal" id="intro_data">
+
+      <div class="form_content">
+
+        <%= form_for Session.new, remote: true, html: {id: 'edit_session', class: 'pure-form pure-form-stacked'} do |f| %>
+
+          <p><small>Some info about you. We'll only use this for our leaderboard and so you can see how your score compares to others</small>.</p>
+
+          <div class="form_item">
+            <%= f.select :country, countries_for_select, prompt: '- Select your country -' %>
+          </div>
+
+          <div class="form_item">
+            <%= f.text_field :age, placeholder: 'Your age', pattern: "[0-9]+" %>
+          </div>
+
+          <div class="form_item">
+            <%= f.text_field :nickname, placeholder: 'Your nickname', autocorrect: 'off', size: 20 %>
+          </div>
+
+          <%= hidden_field_tag :remote_ip, (!Rails.env.development? ? request.remote_ip : '88.19.157.58') %>
+
+          <div class="form_item form_item_submit">
+            <%= f.submit "Let me play now!", class: "pure-button pure-button-primary" %>
+          </div>
+
+          <div id="warning_flash"></div>
+
+          
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+	<div class="pure-u-1 pure-u-md-1-4"></div>
+
+</div>
+
+<%# video_tag('test/3592082.mp4', autoplay: true, loop: true, type:'video/mp4', class: 'video_bg') %>
+<%= video_tag('video_home_10s_1024.mp4', autoplay: true, class: 'video_bg', loop: true, type:'video/mp4') %>
