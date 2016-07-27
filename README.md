@@ -1,5 +1,7 @@
 # NewsQuizzer
 
+
+
 NewsQuizzer is a Rails application to easily create a storytelling-like game to challenge players to answer questions around a topic. Main features: 
 
 - Simple multiple-choice questions
@@ -7,11 +9,11 @@ NewsQuizzer is a Rails application to easily create a storytelling-like game to 
 - Ranking, with drilldown
 - Mobile optimised
 
-The app was created to power the [Africa Offshore Game]() by ICIJ.
+The app was created to power the [Africa Offshore Game](https://panamapapers.icij.org/20160725-africa-offshore-game.html) in the context of [Panama Papers by ICIJ](https://panamapapers.icij.org/).
 
 ## Live demo
 
-- Link to live site
+- [Live site](africaoffshoregame.icij.org)
 - screenshots & screencast
 
 ## Getting started
@@ -22,7 +24,7 @@ Please, verify the following requirements. The app runs on Ruby 2.3+, Rails 5+ a
 
 ### Cloning repo and launching the application
 
-1 - Go to []() and download or clone the reopsitory
+1 - Go to [github.com/PopulateTools/news-quizzer](https://github.com/PopulateTools/news-quizzer) and download or clone the reopsitory
 
 2 - Create the configuration files, based on the `.example` version:
   - `config/database.yml`, based on `config/database.yml.example`
@@ -101,6 +103,6 @@ and we'll review them. Areas that can be improved are:
 
 ## Credits
 
-- Original Idea: ICIJ
+- Original Idea: [ICIJ](http://www.icij.org)
 - UX Design & Development: Fernando Blat, Jorge Sancha and Álvaro Ortiz from [Populate](http://populate.tools)
-- Funding: The Pulitzer Center
+- Funding: [The Pulitzer Center](http://pulitzercenter.org/)
