@@ -1,7 +1,5 @@
 # NewsQuizzer
 
-
-
 NewsQuizzer is a Rails application to easily create a storytelling-like game to challenge players to answer questions around a topic. Main features: 
 
 - Simple multiple-choice questions
@@ -11,10 +9,9 @@ NewsQuizzer is a Rails application to easily create a storytelling-like game to 
 
 The app was created to power the [Africa Offshore Game](https://panamapapers.icij.org/20160725-africa-offshore-game.html) in the context of [Panama Papers by ICIJ](https://panamapapers.icij.org/).
 
-## Live demo
+## Try it
 
-- [Live site](africaoffshoregame.icij.org)
-- screenshots & screencast
+- [Live site](http://africaoffshoregame.icij.org)
 
 ## Getting started
 
